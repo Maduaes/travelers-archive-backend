@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: travelers-archive
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/travelers_archive
+    username: postgres
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
