@@ -1,0 +1,79 @@
+Documento de Estratégia de Testes
+
+Traveler’s Archive
+A ideia principal do projeto é ser um editor de fichas de RPG, com criação, edição e compartilhamento. O projeto tem como objetivo facilitar a criação de modelos de fichas que podem ser compartilhados, preenchidos e editados de forma dinâmica pelos usuários, melhorando a experiência de jogo ao oferecer grande personalização. 
+
+
+Funcionalidades do Projeto:
+Autenticação e Login
+O usuário poderá fazer login e cadastro.
+O usuário poderá editar seu perfil.
+O usuário terá sua conta, onde terá acesso à duas sessões: Modelos de Fichas e Fichas Preenchidas. 
+O usuário terá acesso aos seus próprios Modelos e Fichas, e também os compartilhados com ele por outros usuários.
+
+Testes:
+ID – CT-01
+Funcionalidade – Login de Usuário 
+Pré Condição – Usuário Cadastrado no Sistema
+Entrada – E-mail válido e senha correta 
+Ação – Clicar em 'login'
+Resultado Esperado – Redirecionar para a página principal
+Tipo – E2E
+
+
+ID – CT-02
+Funcionalidade – Cadastro de Usuário 
+Pré Condição – Usuário abrir o site
+Entrada – E-mail válido e senha atendendo os requisitos.
+Ação – Clicar em 'cadastro'
+Resultado Esperado – Redirecionar para a página principal
+Tipo – E2E
+
+
+Edição de Fichas
+O usuário poderá criar sua própria ficha, posicionando elementos e blocos pré-prontos com funcionalidades editáveis (como alguns tipos de automação) em qualquer lugar da página. 
+O usuário poderá criar seus próprios elementos para colocar nas fichas.
+
+Testes:
+ID – CT-03
+Funcionalidade – Criar uma Ficha a partir de um Modelo
+Pré Condição – Ter uma conta, estar logado, e ter um modelo para se basear.
+Entrada – Inserir nome da ficha e selecionar o Modelo.
+Ação – Clicar em 'Criar Ficha'
+Resultado Esperado – Redirecionar para a página de edição de Ficha, onde serão colocados os dados do personagem.
+Tipo – E2E
+
+
+ID – CT-04
+Funcionalidade – Criar um Modelo
+Pré Condição – Ter uma conta, estar logado.
+Entrada – Inserir o nome do Modelo.
+Ação – Clicar em 'Criar Modelo'
+Resultado Esperado – Redirecionar para a página de edição de Modelo, onde será editado layout, configurações e preferências da ficha.
+Tipo – E2E
+
+
+
+Importação e Compartilhamento
+O usuário terá como importar um Modelo de Ficha por um botão de importação.
+O usuário terá como criar os seus próprios modelos de fichas.
+O usuário poderá compartilhar seus modelos ou fichas com outras pessoas, que podem importar o arquivo compartilhado na própria conta.
+
+Testes:
+ID – CT-05
+Funcionalidade – Importar um Modelo Manualmente
+Pré Condição – Ter uma conta, estar logado.
+Entrada – Um arquivo válido (.tarch - extensão do sistema ou um PDF estruturado corretamente).
+Ação – Clicar em 'Importar Modelo’
+Resultado Esperado – Importar o Modelo para a Biblioteca do usuário, e dar a opção de criar uma ficha com o Modelo importado.
+Tipo – E2E
+
+
+ID – CT-06
+Funcionalidade – Compartilhar um Modelo
+Pré Condição – Ter uma conta, estar logado e ter um Modelo com permissão de compartilhamento.
+Entrada – ID do Modelo e ID do usuário que terá o novo acesso ao Modelo.
+Ação – Clicar em 'Compartilhar Ficha'
+Resultado Esperado – Enviar uma notificação para o usuário que recebeu a ficha, dando as opções de aceitar e rejeitar.
+Tipo – E2E
+
