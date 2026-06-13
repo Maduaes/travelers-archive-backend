@@ -4,10 +4,13 @@ import br.com.dte.travelers_archive.dto.usuario.UsuarioGetDTO
 import br.com.dte.travelers_archive.dto.usuario.UsuarioPatchDTO
 import br.com.dte.travelers_archive.dto.usuario.UsuarioPostDTO
 import br.com.dte.travelers_archive.entity.UsuarioEntity
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Component
 
 @Component
-class UsuarioMapper() {
+class UsuarioMapper(
+    private val passwordEncoder: PasswordEncoder
+) {
     fun entityToGetDTO(
         entity: UsuarioEntity
     ): UsuarioGetDTO {
@@ -31,7 +34,7 @@ class UsuarioMapper() {
         return UsuarioEntity(
             username = dto.username,
             email = dto.email,
-            password = dto.password,
+            password = passwordEncoder.encode(dto.password).toString(),
             profilePic = dto.profilePic,
 //          colocar os dados que faltam
         )
@@ -44,7 +47,7 @@ class UsuarioMapper() {
         return usuarioAntigo.copy(
             username = dto.username ?: usuarioAntigo.username,
             email = dto.email ?: usuarioAntigo.email,
-            password = dto.password ?: usuarioAntigo.password,
+            password = dto.password?.let { passwordEncoder.encode(it) } ?: usuarioAntigo.password,
             profilePic = dto.profilePic ?: usuarioAntigo.profilePic,
 //          colocar os dados que faltam
         )

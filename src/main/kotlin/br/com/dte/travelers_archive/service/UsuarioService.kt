@@ -7,12 +7,14 @@ import br.com.dte.travelers_archive.exceptions.BusinessRuleException
 import br.com.dte.travelers_archive.exceptions.ResourceNotFoundException
 import br.com.dte.travelers_archive.mapper.UsuarioMapper
 import br.com.dte.travelers_archive.repository.UsuarioRepository
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 
 @Service
 class UsuarioService(
     private val repository: UsuarioRepository,
-    private val mapper: UsuarioMapper
+    private val mapper: UsuarioMapper,
+    private val passwordEncoder: PasswordEncoder
 ) {
     fun buscaUsuarioPorId(
         id: Long
@@ -32,9 +34,10 @@ class UsuarioService(
         if(repository.existsByEmail(dto.email)) {
             throw BusinessRuleException("Dados inválidos! Tente Novamente.")
         }
-       val usuarioEntity = mapper.postDTOToEntity(dto)
-       repository.save(usuarioEntity)
-       return mapper.entityToGetDTO(usuarioEntity)
+        val usuarioEntity = mapper.postDTOToEntity(dto)
+
+        val salvo = repository.save(usuarioEntity)
+        return mapper.entityToGetDTO(salvo)
     }
 
     fun editaUsuario(
@@ -53,8 +56,8 @@ class UsuarioService(
 
         val usuarioAtualizado = mapper.patchDTOToEntity(dto, usuarioAntigo)
 
-        repository.save(usuarioAtualizado)
-        return mapper.entityToGetDTO(usuarioAtualizado)
+        val salvo = repository.save(usuarioAtualizado)
+        return mapper.entityToGetDTO(salvo)
     }
 
     fun deletaUsuario(id: Long) {
